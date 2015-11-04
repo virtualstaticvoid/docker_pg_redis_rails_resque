@@ -10,7 +10,7 @@ redis:
 
 worker:
   image: rails-app
-  command: bundle exec sidekiq -C config/sidekiq.yml --environment development
+  command: bundle exec sidekiq -C config/sidekiq.yml
   volumes:
     - ./app/:/usr/src/app
   links:
@@ -21,7 +21,7 @@ worker:
 
 web:
   image: rails-app
-  command: bundle exec thin start --rackup config.ru --port 3000 --environment development
+  command: bundle exec thin start --rackup config.ru --port 3000
   volumes:
     - ./app/:/usr/src/app
   links:
