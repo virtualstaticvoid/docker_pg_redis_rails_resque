@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# fail fast
+set -e
+
+# debug
+# set -x
+
+if [[ ! -f .env ]]; then
+  cp .env.example .env
+  echo "Please edit the .env file before continuing."
+  exit 1
+fi
+
+# FIXME: add check to see that the images/containers exist
+# pity there isn't a `docker-compose status` command
+
+docker-compose up -d db
+sleep 20
+
+# under production mode, test_app role doesn't exist!
+# docker-compose run db psql -c 'CREATE ROLE test_app WITH LOGIN;'
+
+docker-compose run web bundle exec rake db:migrate
+docker-compose up

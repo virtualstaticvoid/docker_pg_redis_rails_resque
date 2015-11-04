@@ -1,0 +1,13 @@
+#
+# NOTE:
+#
+#  To bundle install these gems, run the following command
+#
+#  $ BUNDLE_GEMFILE=Gemfile.dev bundle install
+#
+
+ruby '2.2.2'
+source 'https://rubygems.org'
+
+gem 'foreman'
+gem 'mailcatcher'

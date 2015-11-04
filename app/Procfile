@@ -1,0 +1,7 @@
+#
+# Use `foreman start` to execute this Procfile
+#
+# NB: When changing, remember to update Procfile.ssl too!
+#
+web: bundle exec thin start --rackup config.ru --address 0.0.0.0 --port ${PORT:-3000} --environment ${RACK_ENV:-development}
+worker: bundle exec sidekiq -C config/sidekiq.yml --environment ${RACK_ENV:-development}
